@@ -7,12 +7,14 @@ public class Veterinaria {
     //Atributos
     private String nombre;
     private LinkedList<Turno> turnos;
+    private Veterinario veterinario;
 
     //Constructor
 
     public Veterinaria(String nombre) {
         this.nombre = nombre;
         this.turnos = new LinkedList<>();
+        this.veterinario=veterinario;
     }
 
 
@@ -33,6 +35,14 @@ public class Veterinaria {
     public void setTurnos(LinkedList<Turno> turnos) {
         this.turnos = turnos;
     }
+
+    public Veterinario getVeterinario() {
+        return veterinario;
+    }
+
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
+    }
     //
 
 
@@ -41,10 +51,11 @@ public class Veterinaria {
         return "Veterinaria{" +
                 "nombre='" + nombre + '\'' +
                 ", turnos=" + turnos +
+                ", veterinario=" + veterinario +
                 '}';
     }
 
-    public void programarTurno(Animal animal, Veterinario veterinario) {
+    public void programarTurno(Animal animal) {
         Icon icon = new ImageIcon(""); // agregar imagen no olvidarme
         String[] opciones = {"Agendar de aca a 1 semana", "Agendar fecha personalizada", "Cancelar"};
         int opcion = JOptionPane.showOptionDialog(null,
@@ -157,32 +168,48 @@ public class Veterinaria {
         return validar;
     }
 
-    public Perro registrarInfoPerro() {
-        String nombre = validarNombre("Ingrese el nombre del perro:");
-        int edad = validarNumeros("Ingrese la edad del perro:");
-        double peso = validarNumeros("Ingrese el peso del perro:");
-        Perro perro = new Perro(nombre, edad, peso);
-        JOptionPane.showMessageDialog(null, "Su perro se ha registrado!\n" + perro);
-        return perro;
+    public Animal registrarInfoBasica() {
+        String[] opcionesAnimales = {"Perro", "Gato", "Conejo"};
+        int opcionAnimal = JOptionPane.showOptionDialog(null,
+                "Seleccione el tipo de animal:",
+                "Registro de Mascota",
+                0,
+                0,
+                null,
+                opcionesAnimales,
+                opcionesAnimales[0]);
+
+        String nombre = validarNombre("Ingrese el nombre de su mascota:");
+        int edad = validarNumeros("Ingrese la edad de su mascota:");
+        double peso = validarNumeros("Ingrese el peso de su mascota:");
+
+
+        switch (opcionAnimal) {
+            case 0:
+                Perro perro = new Perro(nombre, edad, peso);
+                JOptionPane.showMessageDialog(null, "Su perro se ha registrado!\n" + perro);
+                return perro;
+            case 1:
+                Gato gato = new Gato(nombre, edad, peso);
+                JOptionPane.showMessageDialog(null, "Su gato se ha registrado!\n" + gato);
+                return gato;
+            case 2:
+                Conejo conejo = new Conejo(nombre, edad, peso);
+                JOptionPane.showMessageDialog(null, "Su conejo se ha registrado!\n" + conejo);
+                return conejo;
+        }
+        return null;
+    }
+    public void asignarVet(){
+        if (this.veterinario == null){
+            setVeterinario(new Veterinario("el veterinario pepe","ser buena onda"));
+            JOptionPane.showMessageDialog(null,"El veterinario de su mascota sera: "+ veterinario.getNombre());
+        }else{
+            JOptionPane.showMessageDialog(null,"ya hay vet");
+        }
     }
 
-    public Gato registrarInfoGato() {
-        String nombre = validarNombre("Ingrese el nombre del gato:");
-        int edad = validarNumeros("Ingrese la edad del gato:");
-        double peso = validarNumeros("Ingrese el peso del gato:");
-        Gato gato = new Gato(nombre, edad, peso);
-        JOptionPane.showMessageDialog(null, "Su gato se ha registrado!\n" + gato);
-        return gato;
-    }
 
-    public Conejo registrarInfoConejo() {
-        String nombre = validarNombre("Ingrese el nombre del conejo:");
-        int edad = validarNumeros("Ingrese la edad del conejo:");
-        double peso = validarNumeros("Ingrese el peso del conejo:");
-        Conejo conejo = new Conejo(nombre, edad, peso);
-        JOptionPane.showMessageDialog(null, "Su conejo se ha registrado!\n" + conejo);
-        return conejo;
-    }
 
 
 

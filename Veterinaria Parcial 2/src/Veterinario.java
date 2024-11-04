@@ -45,7 +45,16 @@ public class Veterinario {
         JOptionPane.showMessageDialog(null, "Examinando a " + animal.getNombre());
         animal.examinarAnimal();
         if (!animal.isEstadoSalud()) {
+            JOptionPane.showMessageDialog(null,"El animal necesita tratamiento");
+        }
+    }
+    public void curarAnimal(Animal animal){
+        if(!animal.isEstadoSalud()){
+            JOptionPane.showMessageDialog(null,"Aplicando tratamiento...");
             animal.agregarTratamiento();
+            animal.setEstadoSalud(true);
+        }else{
+            JOptionPane.showMessageDialog(null,"No necesita tratamiento");
         }
     }
 }

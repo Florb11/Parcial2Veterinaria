@@ -67,11 +67,11 @@ public class Animal {
     @Override
     public String toString() {
         return "Animal{" +
-                "nombre='" + nombre + '\'' +
-                ", edad=" + edad +
-                ", peso=" + peso +
-                ", estadoSalud=" + estadoSalud +
-                ", historial=" + historial +
+                "nombre= '" + nombre + '\'' +
+                ", edad= " + edad +
+                ", peso= " + peso +
+                ", estadoSalud= " + estadoSalud +
+                ", historial= " + historial +
                 '}';
     }
 

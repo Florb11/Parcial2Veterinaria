@@ -2,44 +2,41 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        Veterinaria vet = new Veterinaria("Perritos felices:d");
-
-
-        String[] opcionesAnimales = {
-                "Perro", "Gato", "Conejo", "Salir"
-        };
-
-        int opcionMascota;
+        Veterinaria vet = new Veterinaria("Patitas felices");
+        String[] opciones = {"Registrar Mascota", "Agendar Turno", "Verificar Turno", "Salir"};
+        int opcion;
+        Animal animal = null;
         do {
-            opcionMascota = JOptionPane.showOptionDialog(null,
-                    "Selecciona tu mascota",
-                    "Menu Mascota",
+            opcion = JOptionPane.showOptionDialog(null,
+                    "Menu articulos",
+                    "",
                     0,
                     0,
                     null,
-                    opcionesAnimales,
-                    opcionesAnimales[0]);
-
-
-
-            switch (opcionMascota) {
+                    opciones,
+                    opciones[0]);
+            switch (opcion) {
                 case 0:
-                    vet.registrarInfoPerro();
+                    if(animal == null){
+                        animal = vet.registrarInfoBasica();
+                        vet.asignarVet();
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Su mascota ya estaba registrada: " +animal);
+                    }
                     break;
                 case 1:
-                    vet.registrarInfoGato();
+                    vet.programarTurno(animal);
                     break;
                 case 2:
-                    vet.registrarInfoConejo();
+                    vet.verificarTurnos();
+
                     break;
                 case 3:
-                    JOptionPane.showMessageDialog(null, "Saliendo...");
-                    return;
-
+                    JOptionPane.showMessageDialog(null, "Saliendo");
+                    break;
             }
-        }while (opcionMascota!=3);
+        } while (opcion != 2);
+
     }
 }
-
-
 
