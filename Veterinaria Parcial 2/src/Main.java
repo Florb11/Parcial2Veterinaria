@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Animal animal = new Animal("pepe",20,20);
+        animal.agregarTratamiento();
+        animal.mostrarHistorial();
     }
 }

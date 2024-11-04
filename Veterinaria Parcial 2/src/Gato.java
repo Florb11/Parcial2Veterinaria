@@ -9,6 +9,7 @@ public class Gato extends Animal{
         this.color = color;
     }
 
+
     //Get y Set
 
     public String getColor() {

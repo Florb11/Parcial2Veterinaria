@@ -5,6 +5,7 @@ public class Animal {
     private String nombre;
     private int edad;
     private double peso;
+    private Historial historial;
 
     //Constructor
 
@@ -12,7 +13,9 @@ public class Animal {
         this.nombre = nombre;
         this.edad = edad;
         this.peso = peso;
+        this.historial = new Historial();
     }
+
 
     //Get y Set
 
@@ -39,7 +42,17 @@ public class Animal {
     public void setPeso(double peso) {
         this.peso = peso;
     }
+
+
+    public Historial getHistorial() {
+        return historial;
+    }
+
+    public void setHistorial(Historial historial) {
+        this.historial = historial;
+    }
     //
+
 
     @Override
     public String toString() {
@@ -47,9 +60,18 @@ public class Animal {
                 "nombre='" + nombre + '\'' +
                 ", edad=" + edad +
                 ", peso=" + peso +
+                ", historial=" + historial +
                 '}';
     }
+
     public void examinarAnimal(){
         JOptionPane.showMessageDialog(null,"Comenzando la examinacion a: "+ getNombre());
+    }
+    public void agregarTratamiento(){
+        this.historial.agregarTratamientoHistorial();
+
+    }
+    public void mostrarHistorial() {
+        historial.mostrarHistorial();
     }
 }

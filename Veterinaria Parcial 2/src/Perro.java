@@ -8,6 +8,8 @@ public class Perro extends Animal {
         super(nombre, edad, peso);
         this.raza = raza;
     }
+
+
     //Get y Set
 
     public String getRaza() {
