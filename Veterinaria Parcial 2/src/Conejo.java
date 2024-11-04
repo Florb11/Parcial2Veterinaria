@@ -39,7 +39,6 @@ public class Conejo extends Animal{
         } else {
             this.ojos = false;
             JOptionPane.showMessageDialog(null, "los ojos del conejo estan mal, Se necesita tratamiento");
-            agregarTratamiento();
         }
     }
 

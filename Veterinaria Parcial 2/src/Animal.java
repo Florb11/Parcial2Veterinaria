@@ -84,7 +84,6 @@ public class Animal {
         } else {
             this.estadoSalud = false;
             JOptionPane.showMessageDialog(null, "El animal necesita tratamiento :( ");
-            agregarTratamiento();
         }
 
     }

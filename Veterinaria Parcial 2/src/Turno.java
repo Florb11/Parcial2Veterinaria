@@ -52,4 +52,6 @@ public class Turno {
                 ", veterinario=" + veterinario +
                 '}';
     }
+
+
 }

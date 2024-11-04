@@ -40,7 +40,6 @@ public class Gato extends Animal{
         } else {
             this.pelaje = false;
             JOptionPane.showMessageDialog(null, "El gato tiene problemas en el pelaje, Se necesita tratamiento");
-            agregarTratamiento();
         }
     }
 

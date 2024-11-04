@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Veterinario {
     //Atributos
     private String nombre;
@@ -38,5 +40,12 @@ public class Veterinario {
                 "nombre='" + nombre + '\'' +
                 ", especialidad='" + especialidad + '\'' +
                 '}';
+    }
+    public void examinarAnimal(Animal animal) {
+        JOptionPane.showMessageDialog(null, "Examinando a " + animal.getNombre());
+        animal.examinarAnimal();
+        if (!animal.isEstadoSalud()) {
+            animal.agregarTratamiento();
+        }
     }
 }

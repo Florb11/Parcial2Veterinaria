@@ -2,27 +2,19 @@ import javax.swing.*;
 
 public class Perro extends Animal {
     //Atributos
-    private String raza;
     private boolean patitas;
 
     //Constructor
 
-    public Perro(String nombre, int edad, double peso, String raza) {
+    public Perro(String nombre, int edad, double peso) {
         super(nombre, edad, peso);
-        this.raza = raza;
         this.patitas = patitas;
     }
 
 
+
     //Get y Set
 
-    public String getRaza() {
-        return raza;
-    }
-
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
 
     public boolean isPatitas() {
         return patitas;
@@ -35,7 +27,6 @@ public class Perro extends Animal {
     @Override
     public String toString() {
         return "Perro{" +
-                "raza='" + raza + '\'' +
                 ", patitas=" + patitas +
                 "} " + super.toString();
     }
@@ -59,7 +50,6 @@ public class Perro extends Animal {
         } else {
             this.patitas = false;
             JOptionPane.showMessageDialog(null, "El perro tiene problemas en las patitas, Se necesita tratamiento");
-            agregarTratamiento();
         }
 
     }
