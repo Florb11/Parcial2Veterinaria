@@ -5,6 +5,7 @@ public class Animal {
     private String nombre;
     private int edad;
     private double peso;
+    private boolean estadoSalud;
     private Historial historial;
 
     //Constructor
@@ -14,6 +15,7 @@ public class Animal {
         this.edad = edad;
         this.peso = peso;
         this.historial = new Historial();
+        this.estadoSalud = estadoSalud;
     }
 
 
@@ -51,6 +53,14 @@ public class Animal {
     public void setHistorial(Historial historial) {
         this.historial = historial;
     }
+
+    public boolean isEstadoSalud() {
+        return estadoSalud;
+    }
+
+    public void setEstadoSalud(boolean estadoSalud) {
+        this.estadoSalud = estadoSalud;
+    }
     //
 
 
@@ -60,12 +70,23 @@ public class Animal {
                 "nombre='" + nombre + '\'' +
                 ", edad=" + edad +
                 ", peso=" + peso +
+                ", estadoSalud=" + estadoSalud +
                 ", historial=" + historial +
                 '}';
     }
 
     public void examinarAnimal(){
-        JOptionPane.showMessageDialog(null,"Comenzando la examinacion a: "+ getNombre());
+        JOptionPane.showMessageDialog(null, "Comenzando el examen...");
+        int salud = JOptionPane.showConfirmDialog(null, "El animal esta en buen estado de salud?");
+        if (salud == JOptionPane.YES_OPTION) {
+            this.estadoSalud = true;
+            JOptionPane.showMessageDialog(null, "El animal esta en buen estado de salud. No requiere tratamiento.");
+        } else {
+            this.estadoSalud = false;
+            JOptionPane.showMessageDialog(null, "El animal necesita tratamiento :( ");
+            agregarTratamiento();
+        }
+
     }
     public void agregarTratamiento(){
         this.historial.agregarTratamientoHistorial();

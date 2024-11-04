@@ -1,23 +1,25 @@
+import javax.swing.*;
+
 public class Gato extends Animal{
     //Atributos
-    private String color;
+    private boolean pelaje;
 
     //Constructor
 
-    public Gato(String nombre, int edad, double peso, String color) {
+    public Gato(String nombre, int edad, double peso) {
         super(nombre, edad, peso);
-        this.color = color;
+        this.pelaje = pelaje;
     }
 
 
     //Get y Set
 
-    public String getColor() {
-        return color;
+    public boolean isPelaje() {
+        return pelaje;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setPelaje(boolean pelaje) {
+        this.pelaje = pelaje;
     }
 
     //
@@ -25,7 +27,30 @@ public class Gato extends Animal{
     @Override
     public String toString() {
         return "Gato{" +
-                "color='" + color + '\'' +
+                "pelaje='" + pelaje + '\'' +
                 "} " + super.toString();
+    }
+
+    @Override
+    public void examinarAnimal() {
+        int pelaje = JOptionPane.showConfirmDialog(null, "El animal tiene bien el pelaje?");
+        if (pelaje == JOptionPane.YES_OPTION) {
+            this.pelaje = true;
+            JOptionPane.showMessageDialog(null, "El pelaje del gato esta bien");
+        } else {
+            this.pelaje = false;
+            JOptionPane.showMessageDialog(null, "El gato tiene problemas en el pelaje, Se necesita tratamiento");
+            agregarTratamiento();
+        }
+    }
+
+    @Override
+    public void agregarTratamiento() {
+        super.agregarTratamiento();
+    }
+
+    @Override
+    public void mostrarHistorial() {
+        super.mostrarHistorial();
     }
 }
