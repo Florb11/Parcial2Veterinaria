@@ -60,7 +60,7 @@ public class Veterinaria {
             this.veterinario = new Veterinario(nombreVeterinario, "Veterinario", animal);
             JOptionPane.showMessageDialog(null, "Se asigno al veterinario: " + veterinario.getNombre());
         }
-        Icon icon = new ImageIcon(""); // agregar imagen no olvidarme
+        Icon icon = new ImageIcon("src/img/turno.png"); // agregar imagen no olvidarme
         String[] opciones = {"Agendar de aca a 1 semana", "Agendar fecha personalizada", "Cancelar"};
         int opcion = JOptionPane.showOptionDialog(null,
                 "¿Para cuando queres agendar el turno?",

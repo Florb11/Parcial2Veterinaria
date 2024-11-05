@@ -51,7 +51,7 @@ public class Veterinario {
                 '}';
     }
     // examinar completo
-    public void examinarAnimal(Animal animal) {
+    public void examinarAnimal() {
         if (this.animal != null) {
             JOptionPane.showMessageDialog(null, "Examinando a " + this.animal.getNombre());
             this.animal.examinarAnimal();
