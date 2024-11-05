@@ -102,24 +102,21 @@ public class Veterinaria {
         JOptionPane.showMessageDialog(null, "El turno esta programado para: " + nuevoTurno);
     }
 
-    public void verificarTurnos() {
+    public void verificarTurnos() { // corregido ahora funciona bien
         if (this.turnos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay turnos programados");
-            return;
-        }
-
-        String mensaje = "";
-        for (Turno turno : this.turnos) {
-            if (turno.getFecha().isBefore(LocalDate.now())) {
-                mensaje += "El turno para " + turno.getAnimal().getNombre() + " ya paso\n";
-            } else {
-                Period tiempoRestante = Period.between(LocalDate.now(), turno.getFecha());
-                mensaje += "Faltan " + tiempoRestante.getDays() + " dias para el turno de " + turno.getAnimal().getNombre();
+        } else {
+            String mensaje = "";
+            for (Turno turno : this.turnos) {
+                if (turno.getFecha().isBefore(LocalDate.now())) {
+                    mensaje += "El turno para " + turno.getAnimal().getNombre() + "ya pas";
+                } else {
+                    Period tiempoRestante = Period.between(LocalDate.now(), turno.getFecha());
+                    mensaje += "Faltan " + tiempoRestante.getDays() + " dias para el turno de " + turno.getAnimal().getNombre();
+                }
             }
+            JOptionPane.showMessageDialog(null, mensaje);
         }
-
-
-        JOptionPane.showMessageDialog(null, mensaje);
     }
     public Turno cancelarTurno() {
         if (this.turnos.isEmpty()) {
