@@ -5,6 +5,7 @@ public class Veterinario {
     private String nombre;
     private String especialidad;
 
+
     //Constructor
 
     public Veterinario(String nombre, String especialidad) {
@@ -41,20 +42,52 @@ public class Veterinario {
                 ", especialidad='" + especialidad + '\'' +
                 '}';
     }
+    // examinar completo
     public void examinarAnimal(Animal animal) {
-        JOptionPane.showMessageDialog(null, "Examinando a " + animal.getNombre());
-        animal.examinarAnimal();
-        if (!animal.isEstadoSalud()) {
-            JOptionPane.showMessageDialog(null,"El animal necesita tratamiento");
+        if (animal != null) {
+            JOptionPane.showMessageDialog(null, "Examinando a " + animal.getNombre());
+            animal.examinarAnimal();
+            if (!animal.isEstadoSalud()) {
+                JOptionPane.showMessageDialog(null, "El animal necesita tratamiento");
+            } else {
+                JOptionPane.showMessageDialog(null, "El animal esta en buen estado de salud");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay animal");
         }
     }
-    public void curarAnimal(Animal animal){
-        if(!animal.isEstadoSalud()){
-            JOptionPane.showMessageDialog(null,"Aplicando tratamiento...");
-            animal.agregarTratamiento();
-            animal.setEstadoSalud(true);
-        }else{
-            JOptionPane.showMessageDialog(null,"No necesita tratamiento");
+    //curar completo
+    public void curarAnimal(Animal animal) {
+        if (animal != null) {
+            if (!animal.isEstadoSalud()) {
+                JOptionPane.showMessageDialog(null, "Aplicando tratamiento a " + animal.getNombre());
+                animal.setEstadoSalud(true);
+                agregarTratamientoAlHistorial(animal);
+                JOptionPane.showMessageDialog(null, "Tratamiento aplicado con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "No necesita tratamiento");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "no hay animal :c");
         }
     }
+    //mostras completo
+    public void mostrarHistorialAnimal(Animal animal) {
+        if (animal != null) {
+            animal.getHistorial().mostrarHistorial();
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay animal");
+        }
+    }
+    public void agregarTratamientoAlHistorial(Animal animal) {
+        if (animal != null) {
+            animal.getHistorial().agregarTratamientoHistorial();
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay animal para agregar tratamiento al historial");
+        }
+    }
+
+
+
+
 }

@@ -8,7 +8,8 @@ public class Gato extends Animal{
 
     public Gato(String nombre, int edad, double peso) {
         super(nombre, edad, peso);
-        this.pelaje = pelaje;
+        this.pelaje=true;
+
     }
 
 
@@ -35,21 +36,13 @@ public class Gato extends Animal{
     public void examinarAnimal() {
         int pelaje = JOptionPane.showConfirmDialog(null, "El animal tiene bien el pelaje?");
         if (pelaje == JOptionPane.YES_OPTION) {
-            this.pelaje = true;
+            this.setEstadoSalud(true);
             JOptionPane.showMessageDialog(null, "El pelaje del gato esta bien");
         } else {
-            this.pelaje = false;
+            this.setEstadoSalud(false);
             JOptionPane.showMessageDialog(null, "El gato tiene problemas en el pelaje, Se necesita tratamiento");
         }
     }
 
-    @Override
-    public void agregarTratamiento() {
-        super.agregarTratamiento();
-    }
 
-    @Override
-    public void mostrarHistorial() {
-        super.mostrarHistorial();
-    }
 }

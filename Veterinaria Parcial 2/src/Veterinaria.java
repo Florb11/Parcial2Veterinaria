@@ -14,7 +14,7 @@ public class Veterinaria {
     public Veterinaria(String nombre) {
         this.nombre = nombre;
         this.turnos = new LinkedList<>();
-        this.veterinario=veterinario;
+        this.veterinario = null;
     }
 
 
@@ -56,6 +56,9 @@ public class Veterinaria {
     }
 
     public void programarTurno(Animal animal) {
+        if (this.veterinario == null) {
+            this.veterinario = new Veterinario("pepe","El veterinario");
+        }
         Icon icon = new ImageIcon(""); // agregar imagen no olvidarme
         String[] opciones = {"Agendar de aca a 1 semana", "Agendar fecha personalizada", "Cancelar"};
         int opcion = JOptionPane.showOptionDialog(null,
@@ -91,31 +94,33 @@ public class Veterinaria {
             case 2:
                 JOptionPane.showMessageDialog(null, "No se agendo ningun turno.");
                 return;
-            default:
-                JOptionPane.showMessageDialog(null, "Opcion no valida.");
-                return;
         }
 
         Turno nuevoTurno = new Turno(fechaTurno, animal, veterinario);
         turnos.add(nuevoTurno);
 
 
-        JOptionPane.showMessageDialog(null, "El turno esta programado para: " + nuevoTurno);
+        JOptionPane.showMessageDialog(null, "El turno esta programado para: " + nuevoTurno + "\nVeterinario asignado: "+this.veterinario);
     }
 
     public void verificarTurnos() {
-        if (turnos.isEmpty()) {
+        if (this.turnos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay turnos programados");
             return;
         }
-        for (Turno turno : turnos) {
+
+        String mensaje = "";
+        for (Turno turno : this.turnos) {
             if (turno.getFecha().isBefore(LocalDate.now())) {
-                JOptionPane.showMessageDialog(null, "El turno para " + turno.getAnimal().getNombre() + " ya paso");
+                mensaje += "El turno para " + turno.getAnimal().getNombre() + " ya paso\n";
             } else {
                 Period tiempoRestante = Period.between(LocalDate.now(), turno.getFecha());
-                JOptionPane.showMessageDialog(null, "Faltan " + tiempoRestante.getDays() + " dias para el turno de " + turno.getAnimal().getNombre());
+                mensaje += "Faltan " + tiempoRestante.getDays() + " dias para el turno de " + turno.getAnimal().getNombre();
             }
         }
+
+
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 
 
@@ -144,75 +149,6 @@ public class Veterinaria {
 
         return Integer.parseInt(num);
     }
-
-    public static String validarNombre(String mensaje) {
-        boolean flag;
-        String validar;
-
-        do {
-            flag = true;
-            validar = JOptionPane.showInputDialog(null, mensaje);
-            while (validar.isEmpty()) {
-                validar = JOptionPane.showInputDialog(null, "Error" + mensaje);
-            }
-            for (int i = 0; i < validar.length(); i++) {
-                if (!Character.isAlphabetic(validar.charAt(i))) {
-                    JOptionPane.showMessageDialog(null, "Ingresa el nombre, sin numeros");
-                    flag = false;
-                    break;
-                }
-
-            }
-
-        } while (!flag);
-        return validar;
-    }
-
-    public Animal registrarInfoBasica() {
-        String[] opcionesAnimales = {"Perro", "Gato", "Conejo"};
-        int opcionAnimal = JOptionPane.showOptionDialog(null,
-                "Seleccione el tipo de animal:",
-                "Registro de Mascota",
-                0,
-                0,
-                null,
-                opcionesAnimales,
-                opcionesAnimales[0]);
-
-        String nombre = validarNombre("Ingrese el nombre de su mascota:");
-        int edad = validarNumeros("Ingrese la edad de su mascota:");
-        double peso = validarNumeros("Ingrese el peso de su mascota:");
-
-
-        switch (opcionAnimal) {
-            case 0:
-                Perro perro = new Perro(nombre, edad, peso);
-                JOptionPane.showMessageDialog(null, "Su perro se ha registrado!\n" + perro);
-                return perro;
-            case 1:
-                Gato gato = new Gato(nombre, edad, peso);
-                JOptionPane.showMessageDialog(null, "Su gato se ha registrado!\n" + gato);
-                return gato;
-            case 2:
-                Conejo conejo = new Conejo(nombre, edad, peso);
-                JOptionPane.showMessageDialog(null, "Su conejo se ha registrado!\n" + conejo);
-                return conejo;
-        }
-        return null;
-    }
-    public void asignarVet(){
-        if (this.veterinario == null){
-            setVeterinario(new Veterinario("el veterinario pepe","ser buena onda"));
-            JOptionPane.showMessageDialog(null,"El veterinario de su mascota sera: "+ veterinario.getNombre());
-        }else{
-            JOptionPane.showMessageDialog(null,"ya hay vet");
-        }
-    }
-
-
-
-
-
 
 
 }

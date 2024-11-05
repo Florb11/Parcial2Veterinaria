@@ -15,7 +15,6 @@ public class Animal {
         this.edad = edad;
         this.peso = peso;
         this.historial = new Historial();
-        this.estadoSalud = estadoSalud;
     }
 
 
@@ -75,23 +74,18 @@ public class Animal {
                 '}';
     }
 
-    public void examinarAnimal(){
+
+    public void examinarAnimal() {
         JOptionPane.showMessageDialog(null, "Comenzando el examen...");
         int salud = JOptionPane.showConfirmDialog(null, "El animal esta en buen estado de salud?");
         if (salud == JOptionPane.YES_OPTION) {
-            this.estadoSalud = true;
+            this.setEstadoSalud(true);
             JOptionPane.showMessageDialog(null, "El animal esta en buen estado de salud. No requiere tratamiento.");
         } else {
-            this.estadoSalud = false;
-            JOptionPane.showMessageDialog(null, "El animal necesita tratamiento :( ");
+            this.setEstadoSalud(false);
+            JOptionPane.showMessageDialog(null, "El animal necesita tratamiento :c ");
         }
 
     }
-    public void agregarTratamiento(){
-        this.historial.agregarTratamientoHistorial();
 
-    }
-    public void mostrarHistorial() {
-        historial.mostrarHistorial();
-    }
 }

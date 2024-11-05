@@ -8,9 +8,8 @@ public class Perro extends Animal {
 
     public Perro(String nombre, int edad, double peso) {
         super(nombre, edad, peso);
-        this.patitas = patitas;
+        this.patitas = false;
     }
-
 
 
     //Get y Set
@@ -31,26 +30,21 @@ public class Perro extends Animal {
                 "} " + super.toString();
     }
 
-    @Override
-    public void mostrarHistorial() {
-        super.mostrarHistorial();
-    }
 
-    @Override
-    public void agregarTratamiento() {
-        super.agregarTratamiento();
-    }
+
+
 
     @Override
     public void examinarAnimal() {
         int patas = JOptionPane.showConfirmDialog(null, "El animal tiene bien las patas?");
         if (patas == JOptionPane.YES_OPTION) {
-            this.patitas = true;
+            this.setEstadoSalud(true);
             JOptionPane.showMessageDialog(null, "Las patitas del perro estan bien");
         } else {
-            this.patitas = false;
+            this.setEstadoSalud(false);
             JOptionPane.showMessageDialog(null, "El perro tiene problemas en las patitas, Se necesita tratamiento");
         }
 
     }
+
 }

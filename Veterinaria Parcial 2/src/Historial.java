@@ -3,12 +3,12 @@ import java.util.LinkedList;
 
 public class Historial {
     //Atributos
-    private LinkedList<Tratamiento> tratamientos = new LinkedList<Tratamiento>();
+    private LinkedList<Tratamiento> tratamientos;
 
     //Constructor
 
     public Historial() {
-        this.tratamientos = tratamientos;
+        this.tratamientos = new LinkedList<Tratamiento>();
     }
 
     public Historial(LinkedList<Tratamiento> tratamientos) {
@@ -34,27 +34,54 @@ public class Historial {
                 '}';
     }
     public void agregarTratamientoHistorial(){
-        String nombreTratamiento= JOptionPane.showInputDialog("Ingrese el nombre del tratamiento");
-        String descripcionTratamiento = JOptionPane.showInputDialog("Ingrese una breve descripcion");
-        Tratamiento tratamiento1 = new Tratamiento(nombreTratamiento,descripcionTratamiento);
-        boolean encontrado = false;
+        String nombreTratamiento = validarNombre("Ingrese el nombre del tratamiento");
+        String descripcionTratamiento = validarNombre("Ingrese una breve descripcion");
 
-        for(Tratamiento trat : this.tratamientos){
-            if(trat.getNombre().equals(nombreTratamiento)){
+        for (Tratamiento trat : this.tratamientos) {
+            if (trat.getNombre().equals(nombreTratamiento)) {
                 trat.setDescripcion(descripcionTratamiento);
-                encontrado = true;
-                JOptionPane.showMessageDialog(null, "Tratamiento actualizado" + trat.getNombre());
-                break;
+                JOptionPane.showMessageDialog(null, "Tratamiento actualizado: " + trat.getNombre());
+                return;
             }
         }
-        if (!encontrado) {
-            tratamientos.add(tratamiento1);
-            JOptionPane.showMessageDialog(null, "Tratamiento agregado: " + tratamiento1.getNombre());
+        Tratamiento tratamiento1 = new Tratamiento(nombreTratamiento, descripcionTratamiento);
+        tratamientos.add(tratamiento1);
+        JOptionPane.showMessageDialog(null, "Tratamiento agregado: " + tratamiento1.getNombre());
+
+    }
+    public void mostrarHistorial() {
+        if (tratamientos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay tratamientos en el historial");
+        } else {
+            String historial = "Historial de tratamientos:\n";
+            for (Tratamiento tratamiento : tratamientos) {
+                historial +=  tratamiento + "\n";
+            }
+            JOptionPane.showMessageDialog(null, historial);
         }
     }
-    public void mostrarHistorial(){
-        for(Tratamiento trat: tratamientos){
-            JOptionPane.showMessageDialog(null,tratamientos);
-        }
+
+    public  String validarNombre(String mensaje) {
+        boolean flag;
+        String validar;
+
+        do {
+            flag = true;
+            validar = JOptionPane.showInputDialog(null, mensaje);
+            while (validar.isEmpty()) {
+                validar = JOptionPane.showInputDialog(null, "Error" + mensaje);
+            }
+            for (int i = 0; i < validar.length(); i++) {
+                if (!Character.isAlphabetic(validar.charAt(i))) {
+                    JOptionPane.showMessageDialog(null, "Ingresa el nombre, sin numeros");
+                    flag = false;
+                    break;
+                }
+
+            }
+
+        } while (!flag);
+        return validar;
     }
+
 }

@@ -8,7 +8,8 @@ public class Conejo extends Animal{
 
     public Conejo(String nombre, int edad, double peso) {
         super(nombre, edad, peso);
-        this.ojos = ojos;
+        this.ojos = false;
+
     }
 
     //Get y Set
@@ -34,21 +35,13 @@ public class Conejo extends Animal{
     public void examinarAnimal() {
         int ojos = JOptionPane.showConfirmDialog(null, "El animal tiene bien los ojos?");
         if (ojos == JOptionPane.YES_OPTION) {
-            this.ojos = true;
+            this.setEstadoSalud(true);
             JOptionPane.showMessageDialog(null, "los ojos del conejo estan bien");
         } else {
-            this.ojos = false;
+            this.setEstadoSalud(false);
             JOptionPane.showMessageDialog(null, "los ojos del conejo estan mal, Se necesita tratamiento");
         }
     }
 
-    @Override
-    public void agregarTratamiento() {
-        super.agregarTratamiento();
-    }
 
-    @Override
-    public void mostrarHistorial() {
-        super.mostrarHistorial();
-    }
 }
