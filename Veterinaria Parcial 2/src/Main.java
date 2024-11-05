@@ -31,7 +31,7 @@ public class Main {
                 break;
         }
         Veterinario veterinario = new Veterinario("Flor", "De todo", animal);
-        Veterinaria veterinaria = new Veterinaria("Veterinaria Amigos Peludos");
+        Veterinaria veterinaria = new Veterinaria("Veterinaria Pocas pulgas");
         String[] opciones = {"Programar Turno", "Verificar Turnos", "Examinar Animal", "Curar Animal", "Agregar Tratamiento al Historial", "Mostrar Historial de Animal", "Cancelar Turno", "Salir"};
 
         int opcion;
@@ -95,13 +95,7 @@ public class Main {
         return Integer.parseInt(valida);
 
     }
-    public static String validarCaracteres(String mensaje) {
-        String palabra = "";
-        while (palabra.equals("")) {
-            palabra = JOptionPane.showInputDialog(mensaje);
-        }
-        return palabra;
-    }
+    
 
 
 }
