@@ -95,7 +95,13 @@ public class Main {
         return Integer.parseInt(valida);
 
     }
-    
+    public static String validarCaracteres(String mensaje) {
+        String palabra = "";
+        while (palabra.equals("")) {
+            palabra = JOptionPane.showInputDialog(mensaje);
+        }
+        return palabra;
+    }
 
 
 }
