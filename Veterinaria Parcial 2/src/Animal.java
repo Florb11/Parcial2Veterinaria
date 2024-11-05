@@ -77,15 +77,6 @@ public class Animal {
 
     public void examinarAnimal() {
         JOptionPane.showMessageDialog(null, "Comenzando el examen...");
-        int salud = JOptionPane.showConfirmDialog(null, "El animal esta en buen estado de salud?");
-        if (salud == JOptionPane.YES_OPTION) {
-            this.setEstadoSalud(true);
-            JOptionPane.showMessageDialog(null, "El animal esta en buen estado de salud. No requiere tratamiento.");
-        } else {
-            this.setEstadoSalud(false);
-            JOptionPane.showMessageDialog(null, "El animal necesita tratamiento :c ");
-        }
-
     }
 
 }

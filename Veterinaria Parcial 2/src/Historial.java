@@ -35,7 +35,7 @@ public class Historial {
     }
     public void agregarTratamientoHistorial(){
         String nombreTratamiento = validarNombre("Ingrese el nombre del tratamiento");
-        String descripcionTratamiento = validarNombre("Ingrese una breve descripcion");
+        String descripcionTratamiento = validarDescripcion("Ingrese una breve descripcion");
 
         for (Tratamiento trat : this.tratamientos) {
             if (trat.getNombre().equals(nombreTratamiento)) {
@@ -81,6 +81,18 @@ public class Historial {
             }
 
         } while (!flag);
+        return validar;
+    }
+
+    public String validarDescripcion(String mensaje) {
+        String validar;
+        do {
+            validar = JOptionPane.showInputDialog(null, mensaje);
+            if (validar.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "La descripcion no puede estar vacia: " + mensaje);
+            }
+        } while (validar.isEmpty());
+
         return validar;
     }
 

@@ -45,19 +45,20 @@ public class Veterinaria {
     }
     //
 
-
     @Override
     public String toString() {
         return "Veterinaria{" +
-                "nombre='" + nombre + '\'' +
-                ", turnos=" + turnos +
-                ", veterinario=" + veterinario +
+                "nombre=' " + nombre + '\'' +
+                ", turnos= " + turnos +
+                ", veterinario= " + veterinario +
                 '}';
     }
 
     public void programarTurno(Animal animal) {
         if (this.veterinario == null) {
-            this.veterinario = new Veterinario("pepe","El veterinario");
+            String nombreVeterinario = validarNombre("Ingrese el nombre del veterinario:");
+            this.veterinario = new Veterinario(nombreVeterinario, "Veterinario", animal);
+            JOptionPane.showMessageDialog(null, "Se asigno al veterinario: " + veterinario.getNombre());
         }
         Icon icon = new ImageIcon(""); // agregar imagen no olvidarme
         String[] opciones = {"Agendar de aca a 1 semana", "Agendar fecha personalizada", "Cancelar"};
@@ -96,11 +97,9 @@ public class Veterinaria {
                 return;
         }
 
-        Turno nuevoTurno = new Turno(fechaTurno, animal, veterinario);
-        turnos.add(nuevoTurno);
-
-
-        JOptionPane.showMessageDialog(null, "El turno esta programado para: " + nuevoTurno + "\nVeterinario asignado: "+this.veterinario);
+        Turno nuevoTurno = new Turno(fechaTurno, animal, this.veterinario);
+        this.turnos.add(nuevoTurno);
+        JOptionPane.showMessageDialog(null, "El turno esta programado para: " + nuevoTurno);
     }
 
     public void verificarTurnos() {
@@ -121,6 +120,22 @@ public class Veterinaria {
 
 
         JOptionPane.showMessageDialog(null, mensaje);
+    }
+    public Turno cancelarTurno() {
+        if (this.turnos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay turnos programados");
+            return null;
+        }
+        String nombreMascota = validarNombre(("Ingrese el nombre del animal para eliminar su turno:"));
+        for (Turno turno : this.turnos) {
+            if (turno.getAnimal().getNombre().equalsIgnoreCase(nombreMascota)) {
+                this.turnos.remove(turno);
+                JOptionPane.showMessageDialog(null, "Turno eliminado para el animal: " + nombreMascota);
+                return turno;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "No se encontro un turno para el animal: " + nombreMascota);
+        return null;
     }
 
 
@@ -148,6 +163,28 @@ public class Veterinaria {
         } while (!flag);
 
         return Integer.parseInt(num);
+    }
+    public  String validarNombre(String mensaje) {
+        boolean flag;
+        String validar;
+
+        do {
+            flag = true;
+            validar = JOptionPane.showInputDialog(null, mensaje);
+            while (validar.isEmpty()) {
+                validar = JOptionPane.showInputDialog(null, "Error" + mensaje);
+            }
+            for (int i = 0; i < validar.length(); i++) {
+                if (!Character.isAlphabetic(validar.charAt(i))) {
+                    JOptionPane.showMessageDialog(null, "Ingresa el nombre, sin numeros");
+                    flag = false;
+                    break;
+                }
+
+            }
+
+        } while (!flag);
+        return validar;
     }
 
 

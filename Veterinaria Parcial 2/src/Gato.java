@@ -34,6 +34,10 @@ public class Gato extends Animal{
 
     @Override
     public void examinarAnimal() {
+        super.examinarAnimal();
+        examinarPelaje();
+    }
+    public void examinarPelaje(){
         int pelaje = JOptionPane.showConfirmDialog(null, "El animal tiene bien el pelaje?");
         if (pelaje == JOptionPane.YES_OPTION) {
             this.setEstadoSalud(true);
@@ -43,6 +47,4 @@ public class Gato extends Animal{
             JOptionPane.showMessageDialog(null, "El gato tiene problemas en el pelaje, Se necesita tratamiento");
         }
     }
-
-
 }

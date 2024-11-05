@@ -31,11 +31,13 @@ public class Perro extends Animal {
     }
 
 
-
-
-
     @Override
     public void examinarAnimal() {
+        super.examinarAnimal();
+        examinarPatitas();
+    }
+
+    public void examinarPatitas(){
         int patas = JOptionPane.showConfirmDialog(null, "El animal tiene bien las patas?");
         if (patas == JOptionPane.YES_OPTION) {
             this.setEstadoSalud(true);

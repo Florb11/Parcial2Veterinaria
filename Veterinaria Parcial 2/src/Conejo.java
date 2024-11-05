@@ -33,6 +33,11 @@ public class Conejo extends Animal{
 
     @Override
     public void examinarAnimal() {
+        super.examinarAnimal();
+        examinarOjos();
+    }
+
+    public void examinarOjos(){
         int ojos = JOptionPane.showConfirmDialog(null, "El animal tiene bien los ojos?");
         if (ojos == JOptionPane.YES_OPTION) {
             this.setEstadoSalud(true);
@@ -42,6 +47,4 @@ public class Conejo extends Animal{
             JOptionPane.showMessageDialog(null, "los ojos del conejo estan mal, Se necesita tratamiento");
         }
     }
-
-
 }

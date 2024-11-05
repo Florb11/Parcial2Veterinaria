@@ -3,11 +3,12 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-        Veterinario veterinario = new Veterinario("Dr. Juan", "Veterinario General");
-        Veterinaria veterinaria = new Veterinaria("dsa");
-        Perro perro = new Perro("fdsf",20,20);
-        String[] opciones = { "Programar Turno", "Verificar Turnos", "Examinar Animal", "Curar Animal","Agregar Tratamiento al Historial", "Mostrar Historial de Animal", "Salir"
-        };
+        Perro perro = new Perro("perrito",20,20);
+        Veterinario veterinario = new Veterinario("Pepe", "Veterinario",perro);
+        Veterinaria veterinaria = new Veterinaria("Buena pata");
+
+        String[] opciones = { "Programar Turno", "Verificar Turnos", "Examinar Animal", "Curar Animal",
+                "Agregar Tratamiento al Historial", "Mostrar Historial de Animal","cancelar Turno", "Salir"};
 
         int opcion;
         do {
@@ -25,32 +26,36 @@ public class Main {
 
             switch (opcion) {
                 case 0:
-                    veterinaria.programarTurno(perro);
+                    veterinaria.programarTurno(veterinario.getAnimal());
                     break;
                 case 1:
-                    veterinaria.verificarTurnos();
+                    JOptionPane.showMessageDialog(null, veterinaria.getTurnos().isEmpty() ? "No hay turnos programados" : "Hay turnos programados: " + veterinaria.getTurnos());
                     break;
                 case 2:
-                    if(veterinaria.getTurnos()==null){
-                        JOptionPane.showMessageDialog(null,"agenda primero");
-                    }else {
-                        veterinario.examinarAnimal(perro);
+                    String mensajeExamen = (veterinario.getAnimal() == null) ? "No hay animal" : "Examinando a " + veterinario.getAnimal().getNombre();
+                    JOptionPane.showMessageDialog(null, mensajeExamen);
+                    if (veterinario.getAnimal() != null) {
+                        veterinario.examinarAnimal(veterinario.getAnimal());
+                    break;
                     }
                     break;
                 case 3:
-                    veterinario.curarAnimal(perro);
+                    veterinario.curarAnimal();
                     break;
                 case 4:
-                    veterinario.agregarTratamientoAlHistorial(perro);
+                    veterinario.agregarTratamientoAlHistorial();
                     break;
                 case 5:
-                    veterinario.mostrarHistorialAnimal(perro);
+                    veterinario.mostrarHistorialAnimal();
                     break;
                 case 6:
+                    veterinaria.cancelarTurno();
+                    break;
+                case 7:
                     JOptionPane.showMessageDialog(null, "Saliendo del programa...");
                     break;
 
             }
-        } while (opcion != 6);
+        } while (opcion != 7);
     }
 }

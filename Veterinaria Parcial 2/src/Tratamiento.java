@@ -39,4 +39,5 @@ public class Tratamiento {
                 ", descripcion='" + descripcion + '\'' +
                 '}';
     }
+
 }
